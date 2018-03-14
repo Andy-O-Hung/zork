@@ -1,6 +1,6 @@
 from random import *
 
-def HersheyKisses(object):
+class HersheyKisses(object):
 	
 	def __init__(self):
 		self.name = "HersheyKisses"
