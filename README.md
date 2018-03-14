@@ -1,2 +1,1 @@
-# zork
-RPG game
+By Andy hing Hung & Javier Ramirez
