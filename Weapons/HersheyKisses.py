@@ -1,5 +1,6 @@
 from random import *
 
+#This is the class for this weapon
 class HersheyKisses(object):
 	
 	def __init__(self):

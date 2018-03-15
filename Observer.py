@@ -1,5 +1,6 @@
 from abc import ABCMeta, abstractmethod
 
+#this code is provided by ira's powerpoint
 class Observer(object):
         __metaclass__ = ABCMeta
 
