@@ -1,3 +1,4 @@
+from House import *
 from Observer import Observer
 from random import *
 

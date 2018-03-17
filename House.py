@@ -1,3 +1,4 @@
+from Npc import *
 from Observer import *
 from random import *
 
@@ -76,7 +77,7 @@ class House(Observer, Observable):
 		# Will loop through the Npc list checking for monsters
 		for x in npcs:
 			if x.getName() != "Person":
-				monsterCount++
+				monsterCount += 1
 
 		return monsterCount		
 

@@ -1,8 +1,17 @@
-from Npc import *
-#import all the classes inside the Weapons folder
-from Weapons import *
 from Player import *
+from Neighborhood import *
+
 def main():
+
+	# Testing number 2
+		
+	testPerson = Person()
+	print testPerson.getName()
+	print testPerson.getHealthPoints()
+
+	# End of testing number 2
+	
+'''
 	print("hello")
 	testNpc = Npc()
 	print("testNpc health: %f" % testNpc.getHealthPoints())
@@ -20,6 +29,7 @@ def main():
 	
 	testPlayer = Player()
 	print("testPlayer atk: %d" % testPlayer.getAttackValue())
+'''
 
 #This checks if this file is named main.
 if __name__ == "__main__":
