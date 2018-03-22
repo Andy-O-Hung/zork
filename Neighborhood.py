@@ -11,6 +11,7 @@ class Neighborhood(Observer):
 		self.gridHeight = randint(3, 6)
 		self.gridWidth = randint(3, 6)
 		self.grid = populateGrid()
+		self.numMonsters = getNumMonsters()
 	
 	# Getter methods
 	
@@ -36,3 +37,7 @@ class Neighborhood(Observer):
 				tempHouse = House()
 				tempHouse.add_observer(self)
 				a[x].append(tempHouse)
+	
+	# This fuunction will return the total number of monsters in the neighborhood
+	def getNumMonsters():
+		

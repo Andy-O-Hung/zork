@@ -43,26 +43,32 @@ class House(Observer, Observable):
 			choose = ["Person", "Zombie", "Vampire", "Ghoul", "Werewolf"]
 			rand = randint(0,4)
 			
+			for m in numMonster:
 
-			# ???????????????????????????
-			if choose[rand] == "Person":
-				tempPerson = Person()
-				tempPerson.add_observer(self)
-				npcs.append(tempPerson)
+				if choose[rand] == "Person":
+					tempPerson = Person()
+					tempPerson.add_observer(self)
+					npcs.append(tempPerson)
 	
-			elif choose[rand] == "Zombie":
-				tempZombie = Zombie()
-				tempZombie.add_observer(self)
-				npcs.append(tempZombie)
+				elif choose[rand] == "Zombie":
+					tempZombie = Zombie()
+					tempZombie.add_observer(self)
+					npcs.append(tempZombie)
 				
-			elif choose[rand] == "Vampire":
-				npcs.append(Vampire())
+				elif choose[rand] == "Vampire":
+					tempVampire = Vampire()
+					tempVampire.add_observer(self)
+					npcs.append(tempVampire)
 				
-			elif choose[rand] == "Ghoul":
-				npcs.append(Ghoul())
+				elif choose[rand] == "Ghoul":
+					tempGhoul = Ghoul()
+					tempGhoul.add_observer(self)
+					npcs.append(tempGhoul)
 				
-			elif choose[rand] == "Werewolf":
-				npcs.append(Werewolf())
+				elif choose[rand] == "Werewolf":
+					tempWerewolf = Werewolf()
+\					tempWerewolf.add_observer(self)
+					npcs.append(tempWerewolf)
 				
 		# Return the list of monster in the house
 		return npcs
@@ -79,10 +85,11 @@ class House(Observer, Observable):
 			if x.getName() != "Person":
 				monsterCount += 1
 
-		return monsterCount		
-
-
-
+		return monsterCount
+		
+	# Update method
+	def update(self):
+		self.updateAll()
 
 
 
