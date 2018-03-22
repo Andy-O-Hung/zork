@@ -12,7 +12,7 @@ class House(Observer, Observable):
 		Observable.__init__(self)
 		Observer.__init__(self)
 		self.numberOfNpcs = randint(0, 10)
-		self.npcList = self.generateMonsters(self.numberOfMonsters)
+		self.npcList = self.generateNpcs(self.numberOfNpcs)
 		self.numberOfMonsters = self.countMonsters(self.npcList)
 	
 	# Getter functions
@@ -23,52 +23,45 @@ class House(Observer, Observable):
 
 	# Returns number of monsters in the house
 	def getNumMonsters(self):
-		return self.numberOfMonster
-
-	# Setter functions
-
-	#
-
+		return self.numberOfMonsters
 
 	# Helper functions
 
 	# This function will generate a given number of random monster
 	# that will be in a certain house
-	def generateMonsters(self, numMonsters):
+	def generateNpcs(self, number):
 		
 		npcs = []
 
 		# For loop that will run once for every monster
-		for x in range(numMonsters):
+		for x in range(number):
 			choose = ["Person", "Zombie", "Vampire", "Ghoul", "Werewolf"]
-			rand = randint(0,4)
-			
-			for m in numMonster:
+			rand = randint(0,4)		
 
-				if choose[rand] == "Person":
-					tempPerson = Person()
-					tempPerson.add_observer(self)
-					npcs.append(tempPerson)
+			if choose[rand] == "Person":
+				tempPerson = Person()
+				tempPerson.add_observer(self)
+				npcs.append(tempPerson)
 	
-				elif choose[rand] == "Zombie":
-					tempZombie = Zombie()
-					tempZombie.add_observer(self)
-					npcs.append(tempZombie)
+			elif choose[rand] == "Zombie":
+				tempZombie = Zombie()
+				tempZombie.add_observer(self)
+				npcs.append(tempZombie)
+			
+			elif choose[rand] == "Vampire":
+				tempVampire = Vampire()
+				tempVampire.add_observer(self)
+				npcs.append(tempVampire)
 				
-				elif choose[rand] == "Vampire":
-					tempVampire = Vampire()
-					tempVampire.add_observer(self)
-					npcs.append(tempVampire)
+			elif choose[rand] == "Ghoul":
+				tempGhoul = Ghoul()
+				tempGhoul.add_observer(self)
+				npcs.append(tempGhoul)
 				
-				elif choose[rand] == "Ghoul":
-					tempGhoul = Ghoul()
-					tempGhoul.add_observer(self)
-					npcs.append(tempGhoul)
-				
-				elif choose[rand] == "Werewolf":
-					tempWerewolf = Werewolf()
-\					tempWerewolf.add_observer(self)
-					npcs.append(tempWerewolf)
+			elif choose[rand] == "Werewolf":
+				tempWerewolf = Werewolf()
+\				tempWerewolf.add_observer(self)
+				npcs.append(tempWerewolf)
 				
 		# Return the list of monster in the house
 		return npcs
@@ -87,6 +80,16 @@ class House(Observer, Observable):
 
 		return monsterCount
 		
+	# This function will replace a monster with a person
+	# It will be called when a monster is killed
+	def killedMonster(self, monsterIndex):
+		del self.npcList[monsterIndex]
+		self.numberOfMonsters = self.numberOfMonsters - 1
+		tempPerson = Person()
+		tempPerson.add_observer(self)
+		npcList.append(tempPerson)
+		self.update()
+
 	# Update method
 	def update(self):
 		self.updateAll()
