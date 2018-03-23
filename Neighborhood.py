@@ -8,8 +8,8 @@ class Neighborhood(Observer):
 	# Class constructor
 	def __init__(self):
 		Observer.__init__(self)
-		self.gridHeight = randint(3, 6)
-		self.gridWidth = randint(3, 6)
+		self.gridHeight = randint(2, 3)
+		self.gridWidth = randint(2, 3)
 		self.numMonsters = 0
 		self.grid = self.populateGrid()
 	

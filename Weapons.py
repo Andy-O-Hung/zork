@@ -40,6 +40,7 @@ class HersheyKiss(Weapon):
 		super(HersheyKiss, self).__init__()
 		self.name = "HersheyKiss"
 		self.attackMod = 1
+		self.uses = 5000000
 
 # SourStraw class
 # This class is a child of the weapon parent class
