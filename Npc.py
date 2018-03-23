@@ -22,7 +22,7 @@ class Npc(Observable):
 		return self.name
 
 	# Returns health points of NPC	
-	def getHealthPoints(self):
+	def getHealth(self):
 		return self.healthPoints
 		
 	# Returns NPC's attack strength
