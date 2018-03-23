@@ -124,9 +124,14 @@ class Game(object):
 									self.player1.getInventory()[weaponIndex-1].setUses(self.player1.getInventory()[weaponIndex-1].getUses() -1)
 							
 								print("You dealt %d points of damage to Zombie!\n" %damageDealt)
-								print("Zombie has %d healthpoints\n" % houseEntered.getNpcs()[NPCIndex - 1].getHealth())
 								print("Your %s has now %d use(s)\n" % (self.player1.getInventory()[weaponIndex-1].getName(), self.player1.getInventory()[weaponIndex-1].getUses()))
 							
+								if(houseEntered.getNpcs()[NPCIndex - 1].getHealth() < 1):
+									print("You defeated Zombie! It will turn into a person now!\n")
+									break;
+								else:
+									print("Zombie has %d healthpoints\n" % houseEntered.getNpcs()[NPCIndex - 1].getHealth())
+								
 
 							elif (houseEntered.getNpcs()[NPCIndex - 1].getName() == "Vampire" and self.player1.getInventory()[weaponIndex-1].getUses() > 0):
 								print("You're attacking Vampire using %s!\n" % self.player1.getInventory()[weaponIndex-1].getName())
@@ -148,8 +153,13 @@ class Game(object):
 									self.player1.getInventory()[weaponIndex-1].setUses(self.player1.getInventory()[weaponIndex-1].getUses() -1)
 							
 								print("You dealt %d points of damage to Vampire!\n" %damageDealt)
-								print("Vampire has %d healthpoints\n" % houseEntered.getNpcs()[NPCIndex - 1].getHealth())
 								print("Your %s has now %d use(s)\n" % (self.player1.getInventory()[weaponIndex-1].getName(), self.player1.getInventory()[weaponIndex-1].getUses()))
+							
+								if(houseEntered.getNpcs()[NPCIndex - 1].getHealth() < 1):
+									print("You defeated Vampire! It will turn into a person now!\n")
+									break;
+								else:
+									print("Vampire has %d healthpoints\n" % houseEntered.getNpcs()[NPCIndex - 1].getHealth())
 
 
 							elif (houseEntered.getNpcs()[NPCIndex - 1].getName() == "Ghoul" and self.player1.getInventory()[weaponIndex-1].getUses() > 0):
@@ -176,8 +186,13 @@ class Game(object):
 									self.player1.getInventory()[weaponIndex-1].setUses(self.player1.getInventory()[weaponIndex-1].getUses() -1)
 							
 								print("You dealt %d points of damage to Ghoul!\n" %damageDealt)
-								print("Ghoul has %d healthpoints\n" % houseEntered.getNpcs()[NPCIndex - 1].getHealth())
 								print("Your %s has now %d use(s)\n" % (self.player1.getInventory()[weaponIndex-1].getName(), self.player1.getInventory()[weaponIndex-1].getUses()))
+							
+								if(houseEntered.getNpcs()[NPCIndex - 1].getHealth() < 1):
+									print("You defeated Ghoul! It will turn into a person now!\n")
+									break;
+								else:
+									print("Ghoul has %d healthpoints\n" % houseEntered.getNpcs()[NPCIndex - 1].getHealth())
 
 
 							elif (houseEntered.getNpcs()[NPCIndex - 1].getName() == "Werewolf" and self.player1.getInventory()[weaponIndex-1].getUses() > 0):
@@ -206,16 +221,29 @@ class Game(object):
 									self.player1.getInventory()[weaponIndex-1].setUses(self.player1.getInventory()[weaponIndex-1].getUses() -1)
 							
 								print("You dealt %d points of damage to Werewolf!\n" %damageDealt)
-								print("Werewolf has %d healthpoints\n" % houseEntered.getNpcs()[NPCIndex - 1].getHealth())
 								print("Your %s has now %d use(s)\n" % (self.player1.getInventory()[weaponIndex-1].getName(), self.player1.getInventory()[weaponIndex-1].getUses()))
+							
+								if(houseEntered.getNpcs()[NPCIndex - 1].getHealth() < 1):
+									print("You defeated Werewolf! It will turn into a person now!\n")
+									break;
+								else:
+									print("Werewolf has %d healthpoints\n" % houseEntered.getNpcs()[NPCIndex - 1].getHealth())
 
 							print("You're under attack by %s! Watch out!\n" %houseEntered.getNpcs()[NPCIndex - 1].getName())
 							damageReceived = houseEntered.getNpcs()[NPCIndex - 1].getAttack()
 							print("%s has dealt %d points of damage!\n" %(houseEntered.getNpcs()[NPCIndex - 1].getName(), damageReceived))
 			
 							self.player1.setHealth(self.player1.getHealth() - damageReceived)
-
-							print("You have %d health points now!\n" %self.player1.getHealth())
+							
+							if(self.player1.getHealth() < 1):
+								print("Oh oh. The candy forces have defeated you! You weren't able to save your neighborhood.\n")
+								print("There still are %d monsters in the neighborhood.\n" %self.hood.getMonsterCount())
+								fighting = 0
+								inTheHouse = 0
+								self.state = 0
+								
+							else:
+								print("You have %d health points now!\n" %self.player1.getHealth())
 				
 				
 				except ValueError:
