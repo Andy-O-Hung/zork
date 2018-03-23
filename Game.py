@@ -91,11 +91,15 @@ class Game(object):
 								print("%s. Uses left: %d (%d)" % (x.getName(), x.getUses() ,WeaponNum))
 								WeaponNum += 1
 							print "\n"
-							print "What weapon would you like to use?\n"
+							print "What weapon would you like to use? Press 0 to get out of the house.\n"
 							weaponIndex = int(raw_input())
 							print ""
-							if(weaponIndex > WeaponNum - 1 or weaponIndex < 1):
+							if(weaponIndex == 0):
+								print("Getting out of this house.\n")
+								return;
+							elif(weaponIndex > WeaponNum - 1 or weaponIndex < 1):
 								raise ValueError 
+							
 							elif(self.player1.getInventory()[weaponIndex-1].getUses() == 0):
 								print "That weapon has no uses left! Sorry, you lost your opportunity to attack\n"
 						
@@ -128,6 +132,7 @@ class Game(object):
 							
 								if(houseEntered.getNpcs()[NPCIndex - 1].getHealth() < 1):
 									print("You defeated Zombie! It will turn into a person now!\n")
+									houseEntered.killedMonster(NPCIndex - 1)
 									break;
 								else:
 									print("Zombie has %d healthpoints\n" % houseEntered.getNpcs()[NPCIndex - 1].getHealth())
@@ -157,6 +162,7 @@ class Game(object):
 							
 								if(houseEntered.getNpcs()[NPCIndex - 1].getHealth() < 1):
 									print("You defeated Vampire! It will turn into a person now!\n")
+									houseEntered.killedMonster(NPCIndex - 1)
 									break;
 								else:
 									print("Vampire has %d healthpoints\n" % houseEntered.getNpcs()[NPCIndex - 1].getHealth())
@@ -190,6 +196,7 @@ class Game(object):
 							
 								if(houseEntered.getNpcs()[NPCIndex - 1].getHealth() < 1):
 									print("You defeated Ghoul! It will turn into a person now!\n")
+									houseEntered.killedMonster(NPCIndex - 1)
 									break;
 								else:
 									print("Ghoul has %d healthpoints\n" % houseEntered.getNpcs()[NPCIndex - 1].getHealth())
@@ -225,6 +232,7 @@ class Game(object):
 							
 								if(houseEntered.getNpcs()[NPCIndex - 1].getHealth() < 1):
 									print("You defeated Werewolf! It will turn into a person now!\n")
+									houseEntered.killedMonster(NPCIndex - 1)
 									break;
 								else:
 									print("Werewolf has %d healthpoints\n" % houseEntered.getNpcs()[NPCIndex - 1].getHealth())

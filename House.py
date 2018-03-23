@@ -87,7 +87,7 @@ class House(Observer, Observable):
 		self.numberOfMonsters = self.numberOfMonsters - 1
 		tempPerson = Person()
 		tempPerson.add_observer(self)
-		npcList.append(tempPerson)
+		self.npcList.append(tempPerson)
 		self.update()
 
 	# Update method
