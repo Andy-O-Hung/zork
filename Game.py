@@ -81,9 +81,11 @@ class Game(object):
 						print("+1 health! Your health: %d\n" %self.player1.getHealth())
 						
 					else:
+						print "Get ready to fight!\n"
 						fighting = 1
 						while (fighting == 1):
-							print "Get ready to fight! These are your weapons:\n"
+
+							print "It's your turn to attack. These are your weapons:\n"
 							WeaponNum = 1
 							for x in self.player1.getInventory():
 								print("%s. Uses left: %d (%d)" % (x.getName(), x.getUses() ,WeaponNum))
@@ -91,26 +93,131 @@ class Game(object):
 							print "\n"
 							print "What weapon would you like to use?\n"
 							weaponIndex = int(raw_input())
-							#This is for weakness
-							if (houseEntered.getNpcs()[NPCIndex - 1].getName() == "Zombie"):
+							print ""
+							if(weaponIndex > WeaponNum - 1 or weaponIndex < 1):
+								raise ValueError 
+							elif(self.player1.getInventory()[weaponIndex-1].getUses() == 0):
+								print "That weapon has no uses left! Sorry, you lost your opportunity to attack\n"
+						
+							# Each monster will deal and receive different damage
+							if (houseEntered.getNpcs()[NPCIndex - 1].getName() == "Zombie" and self.player1.getInventory()[weaponIndex-1].getUses() > 0):
+								print("You're attacking Zombie using %s!\n" % self.player1.getInventory()[weaponIndex-1].getName())
+								print("Zombie has %d healthpoints\n" % houseEntered.getNpcs()[NPCIndex - 1].getHealth())
+								damageDealt = 0
+
 								if (self.player1.getInventory()[weaponIndex-1].getName() == "SourStraw"):
-									print("uses atm: %d" % houseEntered.getNpcs()[NPCIndex - 1].getHealth())
+
+									print "It's really effective!\n"
 									
-									houseEntered.getNpcs()[NPCIndex - 1].setHealth(houseEntered.getNpcs()[NPCIndex - 1].getHealth() - 
-									(self.player1.getAttackValue()*self.player1.getInventory()[weaponIndex-1].getMod())*2)
+									damageDealt = self.player1.getAttackValue()*self.player1.getInventory()[weaponIndex-1].getMod()*2
+
+									houseEntered.getNpcs()[NPCIndex - 1].setHealth(houseEntered.getNpcs()[NPCIndex - 1].getHealth() - damageDealt)
 									
 									self.player1.getInventory()[weaponIndex-1].setUses(self.player1.getInventory()[weaponIndex-1].getUses() -1)
-									print("uses atm: %d" % houseEntered.getNpcs()[NPCIndex - 1].getHealth())
+
 								else:
-									houseEntered.getNpcs()[NPCIndex - 1].setHealth(houseEntered.getNpcs()[NPCIndex - 1].getHealth - 
-									(self.player1.getAttackValue()*self.player1.getInventory()[weaponIndex-1].getMod()))
+					
+									damageDealt = self.player1.getAttackValue()*self.player1.getInventory()[weaponIndex-1].getMod()
+
+									houseEntered.getNpcs()[NPCIndex - 1].setHealth(houseEntered.getNpcs()[NPCIndex - 1].getHealth() - damageDealt)
 									
 									self.player1.getInventory()[weaponIndex-1].setUses(self.player1.getInventory()[weaponIndex-1].getUses() -1)
 							
-							#if (self.player1.getInventory()[weaponIndex-1] == houseEntered.getNpcs()[NPCIndex - 1].getWeakness())
-								
+								print("You dealt %d points of damage to Zombie!\n" %damageDealt)
+								print("Zombie has %d healthpoints\n" % houseEntered.getNpcs()[NPCIndex - 1].getHealth())
+								print("Your %s has now %d use(s)\n" % (self.player1.getInventory()[weaponIndex-1].getName(), self.player1.getInventory()[weaponIndex-1].getUses()))
 							
-							#houseEntered.getNpcs[NPCIndex - 1].setHealth()(self.player1.getAttackValue*self.player1.)
+
+							elif (houseEntered.getNpcs()[NPCIndex - 1].getName() == "Vampire" and self.player1.getInventory()[weaponIndex-1].getUses() > 0):
+								print("You're attacking Vampire using %s!\n" % self.player1.getInventory()[weaponIndex-1].getName())
+								print("Vampire has %d healthpoints\n" % houseEntered.getNpcs()[NPCIndex - 1].getHealth())
+								damageDealt = 0
+
+								if (self.player1.getInventory()[weaponIndex-1].getName() == "ChocolateBar"):
+
+									print "Vampire is not harmed by ChocolateBar!\n"
+
+									self.player1.getInventory()[weaponIndex-1].setUses(self.player1.getInventory()[weaponIndex-1].getUses() -1)
+									
+								else:
+					
+									damageDealt = self.player1.getAttackValue()*self.player1.getInventory()[weaponIndex-1].getMod()
+
+									houseEntered.getNpcs()[NPCIndex - 1].setHealth(houseEntered.getNpcs()[NPCIndex - 1].getHealth() - damageDealt)
+									
+									self.player1.getInventory()[weaponIndex-1].setUses(self.player1.getInventory()[weaponIndex-1].getUses() -1)
+							
+								print("You dealt %d points of damage to Vampire!\n" %damageDealt)
+								print("Vampire has %d healthpoints\n" % houseEntered.getNpcs()[NPCIndex - 1].getHealth())
+								print("Your %s has now %d use(s)\n" % (self.player1.getInventory()[weaponIndex-1].getName(), self.player1.getInventory()[weaponIndex-1].getUses()))
+
+
+							elif (houseEntered.getNpcs()[NPCIndex - 1].getName() == "Ghoul" and self.player1.getInventory()[weaponIndex-1].getUses() > 0):
+								print("You're attacking Ghoul using %s!\n" % self.player1.getInventory()[weaponIndex-1].getName())
+								print("Ghoul has %d healthpoints\n" % houseEntered.getNpcs()[NPCIndex - 1].getHealth())
+								damageDealt = 0
+
+								if (self.player1.getInventory()[weaponIndex-1].getName() == "NerdBomb"):
+
+									print "It's SUPER effective!\n"
+									
+									damageDealt = self.player1.getAttackValue()*self.player1.getInventory()[weaponIndex-1].getMod()*5
+
+									houseEntered.getNpcs()[NPCIndex - 1].setHealth(houseEntered.getNpcs()[NPCIndex - 1].getHealth() - damageDealt)
+									
+									self.player1.getInventory()[weaponIndex-1].setUses(self.player1.getInventory()[weaponIndex-1].getUses() -1)
+
+								else:
+					
+									damageDealt = self.player1.getAttackValue()*self.player1.getInventory()[weaponIndex-1].getMod()
+
+									houseEntered.getNpcs()[NPCIndex - 1].setHealth(houseEntered.getNpcs()[NPCIndex - 1].getHealth() - damageDealt)
+									
+									self.player1.getInventory()[weaponIndex-1].setUses(self.player1.getInventory()[weaponIndex-1].getUses() -1)
+							
+								print("You dealt %d points of damage to Ghoul!\n" %damageDealt)
+								print("Ghoul has %d healthpoints\n" % houseEntered.getNpcs()[NPCIndex - 1].getHealth())
+								print("Your %s has now %d use(s)\n" % (self.player1.getInventory()[weaponIndex-1].getName(), self.player1.getInventory()[weaponIndex-1].getUses()))
+
+
+							elif (houseEntered.getNpcs()[NPCIndex - 1].getName() == "Werewolf" and self.player1.getInventory()[weaponIndex-1].getUses() > 0):
+								print("You're attacking Werewolf using %s!\n" % self.player1.getInventory()[weaponIndex-1].getName())
+								print("Werewolf has %d healthpoints\n" % houseEntered.getNpcs()[NPCIndex - 1].getHealth())
+								damageDealt = 0
+
+								if (self.player1.getInventory()[weaponIndex-1].getName() == "ChocolateBar"):
+
+									print "Werewolf is not harmed by ChocolateBar!\n"
+
+									self.player1.getInventory()[weaponIndex-1].setUses(self.player1.getInventory()[weaponIndex-1].getUses() -1)
+
+								elif (self.player1.getInventory()[weaponIndex-1].getName() == "SourStraw"):
+								
+									print "Werewolf is not harmed by SourStraw!\n"
+
+									self.player1.getInventory()[weaponIndex-1].setUses(self.player1.getInventory()[weaponIndex-1].getUses() -1)
+	
+								else:
+					
+									damageDealt = self.player1.getAttackValue()*self.player1.getInventory()[weaponIndex-1].getMod()
+
+									houseEntered.getNpcs()[NPCIndex - 1].setHealth(houseEntered.getNpcs()[NPCIndex - 1].getHealth() - damageDealt)
+									
+									self.player1.getInventory()[weaponIndex-1].setUses(self.player1.getInventory()[weaponIndex-1].getUses() -1)
+							
+								print("You dealt %d points of damage to Werewolf!\n" %damageDealt)
+								print("Werewolf has %d healthpoints\n" % houseEntered.getNpcs()[NPCIndex - 1].getHealth())
+								print("Your %s has now %d use(s)\n" % (self.player1.getInventory()[weaponIndex-1].getName(), self.player1.getInventory()[weaponIndex-1].getUses()))
+
+							print("You're under attack by %s! Watch out!\n" %houseEntered.getNpcs()[NPCIndex - 1].getName())
+							damageReceived = houseEntered.getNpcs()[NPCIndex - 1].getAttack()
+							print("%s has dealt %d points of damage!\n" %(houseEntered.getNpcs()[NPCIndex - 1].getName(), damageReceived))
+			
+							self.player1.setHealth(self.player1.getHealth() - damageReceived)
+
+							print("You have %d health points now!\n" %self.player1.getHealth())
+				
+				
 				except ValueError:
 					print("Incorrect input\n")
 				
