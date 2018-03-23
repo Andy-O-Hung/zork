@@ -1,7 +1,7 @@
 from random import *
 
 # Weapon parent class
-class Weapon(Object):
+class Weapon(object):
 	
 	# Class constructor
 	# Initializes variables that are common to all weapons	
@@ -22,13 +22,13 @@ class Weapon(Object):
 
 	# Returns weapon use count
 	def getUses(self):
-		return self.mod
+		return self.uses
 
 	# Setter methods
 
 	# Sets weapon use count
 	def setUses(self, useCount):
-		self.mod = useCount
+		self.uses = useCount
 
 
 # HersheyKiss class
@@ -49,7 +49,7 @@ class SourStraw(Weapon):
 	def __init__(self):
 		super(SourStraw, self).__init__()
 		self.name = "SourStraw"
-		self.attackMod = rand.uniform(1, 1.75)
+		self.attackMod = uniform(1, 1.75)
 		self.uses = 2
 
 # ChocolateBar class
@@ -60,7 +60,7 @@ class ChocolateBar(Weapon):
 	def __init__(self):
 		super(ChocolateBar, self).__init__()
 		self.name = "ChocolateBar"
-		self.attackMod = rand.uniform(2, 2.4)
+		self.attackMod = uniform(2, 2.4)
 		self.uses = 4
 
 # NerdBomb class
@@ -71,7 +71,7 @@ class NerdBomb(Weapon):
 	def __init__(self):
 		super(NerdBomb, self).__init__()
 		self.name = "NerdBomb"
-		self.attackMod = rand.uniform(3.5, 5)
+		self.attackMod = uniform(3.5, 5)
 		self.uses = 1
 
 

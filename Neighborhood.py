@@ -27,6 +27,10 @@ class Neighborhood(Observer):
 	def getMonsterCount(self):
 		return self.numMonsters
 
+	# Returns neighborhood grid
+	def getGrid(self):
+		return self.grid
+
 	# Helper methods
 		
 	# This function will populate the grid with houses

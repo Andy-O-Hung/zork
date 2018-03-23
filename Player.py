@@ -19,19 +19,22 @@ class Player(object):
 	#REMOVE the continues when we implement the weapons
 	def generateWeapons(self):
 		weaponList = []
-		hersheyKisses = HersheyKisses.HersheyKisses()
-		weaponList.append(HersheyKisses.HersheyKisses())
+		tempKiss = HersheyKiss()
+		weaponList.append(tempKiss)
 		for x in range(9):
 			choose = ["ChocolateBars", "NerdBomb", "SourStraws"]
 			rand = randint(0,2)
 			if choose[rand] == "ChocolateBars":
-				#weaponList.append(ChocolateBars.ChocolateBars())
+				tempBar = ChocolateBar()
+				weaponList.append(tempBar)
 				continue
 			elif choose[rand] == "NerdBomb":
-				#weaponList.append(NerdBomb.NerdBomb())
+				tempBomb = NerdBomb()
+				weaponList.append(tempBomb)
 				continue
 			elif choose[rand] == "SourStraws":
-				#weaponList.append(SourStraws.SourStraws())
+				tempStraw = SourStraw()				
+				weaponList.append(tempStraw)
 				continue
 		return weaponList
 		

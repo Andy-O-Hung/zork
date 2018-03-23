@@ -1,17 +1,32 @@
 from Player import *
 from Neighborhood import *
+from Game import *
 
 def main():
 
+	print "Welcome to ZORK"
+
+	currGame = Game()
+	currGame.run()
+
+'''
 	# Testing number 2
 		
 	testHood = Neighborhood()
-	print "This is the test hood: "
-	print testHood.getMonsterCount()
+	print "--------------- This is the test hood ---------------"
+	print("Grid Height = %d" % testHood.getHeight())
+	print("Grid Width = %d" % testHood.getWidth())
+	hoodGrid = testHood.getGrid()
+	
+	for x in range(testHood.getHeight()):
+		for y in range(testHood.getWidth()):
+			print("This house has this many monsters: %d" % hoodGrid[x][y].getNumMonsters())
+			tempList = hoodGrid[x][y].getNpcs()
+			for n in tempList:
+				print n.getName()
 
 	# End of testing number 2
 	
-'''
 	print("hello")
 	testNpc = Npc()
 	print("testNpc health: %f" % testNpc.getHealthPoints())
