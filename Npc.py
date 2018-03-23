@@ -94,7 +94,7 @@ class Ghoul(Npc):
 
 	# Parent constructor override 
 	def __init__(self):
-		super(Vampire, self).__init__()
+		super(Ghoul, self).__init__()
 		self.name = "Ghoul"
 		self.attackStrength = randint(15, 30)
 		self.healthPoints = randint(40, 80)
@@ -107,7 +107,7 @@ class Werewolf(Npc):
 
 	# Parent constructor override 
 	def __init__(self):
-		super(Werewolve, self).__init__()
+		super(Werewolf, self).__init__()
 		self.name = "Werewolf"
 		self.attackStrength = randint(0, 40)
 		self.healthPoints = 200

@@ -5,9 +5,9 @@ def main():
 
 	# Testing number 2
 		
-	testPerson = Person()
-	print testPerson.getName()
-	print testPerson.getHealthPoints()
+	testHood = Neighborhood()
+	print "This is the test hood: "
+	print testHood.getMonsterCount()
 
 	# End of testing number 2
 	

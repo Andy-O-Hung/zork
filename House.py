@@ -60,7 +60,7 @@ class House(Observer, Observable):
 				
 			elif choose[rand] == "Werewolf":
 				tempWerewolf = Werewolf()
-\				tempWerewolf.add_observer(self)
+				tempWerewolf.add_observer(self)
 				npcs.append(tempWerewolf)
 				
 		# Return the list of monster in the house

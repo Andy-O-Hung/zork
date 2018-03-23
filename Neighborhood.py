@@ -10,8 +10,8 @@ class Neighborhood(Observer):
 		Observer.__init__(self)
 		self.gridHeight = randint(3, 6)
 		self.gridWidth = randint(3, 6)
-		self.grid = populateGrid()
 		self.numMonsters = 0
+		self.grid = self.populateGrid()
 	
 	# Getter methods
 	
@@ -34,16 +34,19 @@ class Neighborhood(Observer):
 
 		# List variable declaration
 		g = []		
-		
+				
 		for x in range(0, self.gridHeight):
 			g.append([])
 			for y in range(0, self.gridWidth):
 				tempHouse = House()
-				numMonsters += tempHouse.getNumMonsters()
+				self.numMonsters += tempHouse.getNumMonsters()
 				tempHouse.add_observer(self)
 				g[x].append(tempHouse)
+		
+		return g
 
+	# 
 	def update(self):
-		self.numMonster = self.numMonsters - 1
+		self.numMonsters -= 1
 	
 		
