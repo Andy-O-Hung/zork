@@ -38,6 +38,7 @@ class Game(object):
 			except ValueError:
 				print "\nPlease enter correct coordinates\n"
 
+	#Prints the house coordinates to the screen.
 	def printMap(self):
 
 		print("These are the coordinates of the houses in the neighborhood:\n")
@@ -47,6 +48,7 @@ class Game(object):
 				print("%d x %d  |" % ((x+1),(y+1))),
 			print "\n"
 
+	#Game Logic when player is inside the house.
 	def enterHouse(self, xHouse, yHouse):
 
 		inTheHouse = True
@@ -59,6 +61,7 @@ class Game(object):
 		else:
 			while(inTheHouse):
 				try:
+					#Checks if the game has ended
 					if (self.hood.getMonsterCount() == 0):
 						print("There are no more monsters!\n")
 						print("You've won!\n")
@@ -91,7 +94,7 @@ class Game(object):
 						fighting = 1
 						while (fighting == 1):
 						
-							#check if end game
+							#Checks if the game has ended
 							if (self.hood.getMonsterCount() == 0):
 								print("There are no more monsters!\n")
 								print("You've won!\n")
