@@ -59,6 +59,12 @@ class Game(object):
 		else:
 			while(inTheHouse):
 				try:
+					if (self.hood.getMonsterCount() == 0):
+						print("There are no more monsters!\n")
+						print("You've won!\n")
+						inTheHouse = False
+						self.state = 0
+						return
 					NPCNum = 1
 					print "You have found some creatures in the house!\n\nThis is a list of them:\n"
 					for x in houseEntered.getNpcs():
@@ -84,6 +90,15 @@ class Game(object):
 						print "Get ready to fight!\n"
 						fighting = 1
 						while (fighting == 1):
+						
+							#check if end game
+							if (self.hood.getMonsterCount() == 0):
+								print("There are no more monsters!\n")
+								print("You've won!\n")
+								fighting = 0
+								inTheHouse = False
+								self.state = 0
+								return
 
 							print "It's your turn to attack. These are your weapons:\n"
 							WeaponNum = 1
@@ -247,7 +262,7 @@ class Game(object):
 								print("Oh oh. The candy forces have defeated you! You weren't able to save your neighborhood.\n")
 								print("There still are %d monsters in the neighborhood.\n" %self.hood.getMonsterCount())
 								fighting = 0
-								inTheHouse = 0
+								inTheHouse = False
 								self.state = 0
 								
 							else:
