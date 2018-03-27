@@ -49,7 +49,7 @@ class Neighborhood(Observer):
 		
 		return g
 
-	# 
+	# Decrements the number of monsters
 	def update(self):
 		self.numMonsters -= 1
 	
