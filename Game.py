@@ -2,8 +2,10 @@ from Neighborhood import *
 from Player import *
 from random import *
 
+#Game class that will be running the game logic.
 class Game(object):
 
+	#Initilization of the game.
 	def __init__(self):	
 		
 		self.hood = Neighborhood()
@@ -11,17 +13,21 @@ class Game(object):
 		self.player1 = Player()
 		self.turn = 0
 		self.state = 0
-
+	
+	#The function that will be used to run the game.
 	def run(self):
 
 		print("\nWelcome to your monster infested neighborhood\n")		
 
 		self.state = 1
 	
+		#Run the game until game is finished.
 		while(self.state != 0):
 
 			print("The size of the neighborhood is: %d x %d\n" % (self.hood.getHeight(), self.hood.getWidth()))
 			print("There are %d houses in it.\n" % (self.hood.getHeight() * self.hood.getWidth()))
+
+			#Prints the map
 			self.printMap();
 			try:
 				print("Type the x coordinate of the house you would like to enter!\n")
@@ -92,6 +98,8 @@ class Game(object):
 					else:
 						print "Get ready to fight!\n"
 						fighting = 1
+						
+						#Fighting logic of the game.
 						while (fighting == 1):
 						
 							#Checks if the game has ended
@@ -102,7 +110,8 @@ class Game(object):
 								inTheHouse = False
 								self.state = 0
 								return
-
+							
+							#Ask the user what weapon to use.
 							print "It's your turn to attack. These are your weapons:\n"
 							WeaponNum = 1
 							for x in self.player1.getInventory():
@@ -121,7 +130,7 @@ class Game(object):
 							elif(self.player1.getInventory()[weaponIndex-1].getUses() == 0):
 								print "That weapon has no uses left! Sorry, you lost your opportunity to attack\n"
 						
-							# Each monster will deal and receive different damage
+							#Logic for if NPC is a Zombie
 							if (houseEntered.getNpcs()[NPCIndex - 1].getName() == "Zombie" and self.player1.getInventory()[weaponIndex-1].getUses() > 0):
 								print("You're attacking Zombie using %s!\n" % self.player1.getInventory()[weaponIndex-1].getName())
 								print("Zombie has %d healthpoints\n" % houseEntered.getNpcs()[NPCIndex - 1].getHealth())
@@ -155,7 +164,7 @@ class Game(object):
 								else:
 									print("Zombie has %d healthpoints\n" % houseEntered.getNpcs()[NPCIndex - 1].getHealth())
 								
-
+							#Logic for if NPC is a Vampire
 							elif (houseEntered.getNpcs()[NPCIndex - 1].getName() == "Vampire" and self.player1.getInventory()[weaponIndex-1].getUses() > 0):
 								print("You're attacking Vampire using %s!\n" % self.player1.getInventory()[weaponIndex-1].getName())
 								print("Vampire has %d healthpoints\n" % houseEntered.getNpcs()[NPCIndex - 1].getHealth())
@@ -185,7 +194,7 @@ class Game(object):
 								else:
 									print("Vampire has %d healthpoints\n" % houseEntered.getNpcs()[NPCIndex - 1].getHealth())
 
-
+							#Logic for if NPC is a Ghoul
 							elif (houseEntered.getNpcs()[NPCIndex - 1].getName() == "Ghoul" and self.player1.getInventory()[weaponIndex-1].getUses() > 0):
 								print("You're attacking Ghoul using %s!\n" % self.player1.getInventory()[weaponIndex-1].getName())
 								print("Ghoul has %d healthpoints\n" % houseEntered.getNpcs()[NPCIndex - 1].getHealth())
@@ -219,7 +228,7 @@ class Game(object):
 								else:
 									print("Ghoul has %d healthpoints\n" % houseEntered.getNpcs()[NPCIndex - 1].getHealth())
 
-
+							#Logic for if NPC is a Werewolf
 							elif (houseEntered.getNpcs()[NPCIndex - 1].getName() == "Werewolf" and self.player1.getInventory()[weaponIndex-1].getUses() > 0):
 								print("You're attacking Werewolf using %s!\n" % self.player1.getInventory()[weaponIndex-1].getName())
 								print("Werewolf has %d healthpoints\n" % houseEntered.getNpcs()[NPCIndex - 1].getHealth())
