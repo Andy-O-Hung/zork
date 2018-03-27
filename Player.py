@@ -1,12 +1,14 @@
 from random import *
 from Weapons import *
 
+#Player class which is the user for the game.
 class Player(object):
 	def __init__(self):
 		self.health = randint(100, 125)
 		self.attackValue = randint(10, 20)
 		self.inventory = self.generateWeapons()
 		
+	#Getter functions
 	def getHealth(self):
 		return self.health
 		
@@ -16,7 +18,7 @@ class Player(object):
 	def getAttackValue(self):
 		return self.attackValue
 	
-	#REMOVE the continues when we implement the weapons
+	#Generate the weapons for the player class.
 	def generateWeapons(self):
 		weaponList = []
 		tempKiss = HersheyKiss()
@@ -38,6 +40,7 @@ class Player(object):
 				continue
 		return weaponList
 		
+	#Setter functions
 	def setAttackValue(self, a):
 		self.attackValue = a;
 		
