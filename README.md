@@ -5,6 +5,7 @@ For this project we created a text based game, alike the world famous game Zork.
 This project is written in Python, and the main focus of it is to perfect our skills in the Object-Oriented programming paradigm. The specifications below are copied from the assignment repository (https://github.com/irawoodring/343/blob/master/assignments/zork.md)
 
 Objects
+
 Your program should model your neighborhood, the monsters in it, you, and the interactions between objects.
 
 Home
